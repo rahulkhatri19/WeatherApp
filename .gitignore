@@ -13,3 +13,4 @@
 /captures
 .externalNativeBuild
 .cxx
+app/src/main/java/in/rahul/weatherapp/utils/ApiUrlHelper.kt
