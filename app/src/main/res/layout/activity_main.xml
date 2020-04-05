@@ -36,14 +36,15 @@
 
             <ImageView
                 android:id="@+id/iv_current_temp"
-                android:layout_width="56dp"
-                android:layout_height="56dp"
+                android:layout_width="96dp"
+                android:layout_height="96dp"
                 android:layout_marginStart="30dp"
-                android:contentDescription="weather image"
+                android:src="@drawable/clouds"
+                android:scaleType="fitXY"
+                android:contentDescription="@string/weather_image"
                 android:padding="8dp"
                 app:layout_constraintBottom_toTopOf="@id/gl_h_10"
-                app:layout_constraintStart_toStartOf="parent"
-                tools:src="@tools:sample/avatars" />
+                app:layout_constraintStart_toStartOf="parent" />
 
             <TextView
                 android:id="@+id/tv_current_temp"
@@ -63,14 +64,14 @@
                 android:id="@+id/tv_max_temp"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="16dp"
+                android:layout_marginTop="24dp"
                 android:layout_marginEnd="32dp"
                 android:paddingStart="8dp"
                 android:paddingEnd="8dp"
                 android:paddingBottom="5dp"
                 android:text="25°C"
                 android:textColor="@android:color/white"
-                android:textSize="22sp"
+                android:textSize="20sp"
                 android:textStyle="bold"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/gl_h_10" />
@@ -94,7 +95,7 @@
                 android:paddingTop="5dp"
                 android:text="19°C"
                 android:textColor="@android:color/white"
-                android:textSize="22sp"
+                android:textSize="20sp"
                 android:textStyle="bold"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/view_max_temp" />

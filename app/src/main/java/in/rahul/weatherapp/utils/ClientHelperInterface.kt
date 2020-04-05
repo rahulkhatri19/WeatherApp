@@ -11,7 +11,7 @@ interface ClientHelperInterface {
 
 //    http://api.openweathermap.org/data/2.5/forecast?q=Bangalore&appid=
     @GET("forecast")
-   fun getForcast(@Query("q") city:String, @Query("appid") appid:String): Call<JsonElement>
+   fun getForcast(@Query("q") city:String, @Query("appid") appid:String, @Query("units") units:String): Call<JsonElement>
 
     companion object {
         var retrofit:Retrofit? = null
