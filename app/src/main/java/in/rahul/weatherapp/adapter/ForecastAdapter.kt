@@ -7,6 +7,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
+import com.bumptech.glide.Glide
 import kotlinx.android.synthetic.main.forecast_layout.view.*
 
 class ForecastAdapter(val context:Context, val forecastList:MutableList<ForecastModel>): RecyclerView.Adapter<ForecastAdapter.ViewHolder>() {
@@ -34,8 +35,9 @@ class ForecastAdapter(val context:Context, val forecastList:MutableList<Forecast
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         val listItem = forecastList.get(position)
         holder.tvDate.text = listItem.date
-        holder.ivClimate.setImageResource(listItem.climateImage)
+//        holder.ivClimate.setImageResource(listItem.climateImage)
         holder.tvMaxTemp.text = listItem.maxTemp
         holder.tvMinTemp.text = listItem.minTemp
+        Glide.with(context).load(listItem.climateImage).into(holder.ivClimate)
     }
 }

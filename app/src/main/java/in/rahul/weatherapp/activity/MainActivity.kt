@@ -1,5 +1,6 @@
-package `in`.rahul.weatherapp
+package `in`.rahul.weatherapp.activity
 
+import `in`.rahul.weatherapp.R
 import `in`.rahul.weatherapp.adapter.DetailClimateAdapter
 import `in`.rahul.weatherapp.adapter.ForecastAdapter
 import `in`.rahul.weatherapp.model.DetailClimateModel
@@ -27,12 +28,12 @@ import java.util.*
 
 class MainActivity : AppCompatActivity() {
 
-    var stCurrentTemp = "0"
-    var stMaxTemp = "0"
-    var stMinTemp = "0"
-    var stDate = "Friday, 28 1:00 pm"
-    var stCity = "Bangaluru"
-    var stFeelsLikeTemp = "0"
+//    var stCurrentTemp = "0"
+//    var stMaxTemp = "0"
+//    var stMinTemp = "0"
+//    var stDate = "Friday, 28 1:00 pm"
+    var stCity = ""
+//    var stFeelsLikeTemp = "0"
     val searchCity = "Bangalore"
     lateinit var flexboxLayoutManager: FlexboxLayoutManager
     lateinit var weatherDetailList: MutableList<WeatherDetailModel>
@@ -112,10 +113,10 @@ class MainActivity : AppCompatActivity() {
                             WeatherDetailModel(
                                 date.toString(),
                                 simpleDate.format(date),
-                                currentTemp.toString(),
-                                (feelsLikeTemp).toString(),
-                               (minTemp).toString(),
-                                (maxTemp).toString(),
+                                decimalFormat.format(currentTemp),
+                                decimalFormat.format(feelsLikeTemp),
+                                decimalFormat.format(minTemp),
+                                decimalFormat.format(maxTemp),
                                 pressure.toString(),
                                 humidity.toString(),
                                 decimalFormat.format(windSpeed),
@@ -161,7 +162,7 @@ class MainActivity : AppCompatActivity() {
 //        Friday, 28 1:00 pm
         val currentDate = "$dayOfWeek, $formatedDate"
         toolbar.title = stCity
-        Glide.with(this).load(listData.icon).into(iv_current_temp)
+        Glide.with(this).load(listData.icon).fitCenter().into(iv_current_temp)
 //        iv_current_temp.setImageResource(R.drawable.rain)
         tv_current_temp.text = "${listData.currentTemp} °C"
         tv_max_temp.text = "${listData.maxTemp} °C"
@@ -177,6 +178,10 @@ class MainActivity : AppCompatActivity() {
 //        recycleViewDetail.layoutManager = GridLayoutManager(this, 2)
         recycleViewDetail.layoutManager = flexboxLayoutManager
         recycleViewDetail.adapter = DetailClimateAdapter(this, climateDetailList)
+
+        iv_current_temp.setOnClickListener {
+            toastShortMessage(this, "Weather condition : ${listData.iconDescription}")
+        }
     }
 
     fun next5DaysData(weatherDetailList:MutableList<WeatherDetailModel>){
@@ -222,15 +227,15 @@ class MainActivity : AppCompatActivity() {
 //        forecastList.add(ForecastModel("Tomorrow 29/02", R.drawable.rain, "32 °C", "19 °C"))
 //        forecastList.add(ForecastModel("Sun, 01/03", R.drawable.sun, "34 °C", "19 °C"))
 //        forecastList.add(ForecastModel("Mon, 02/03", R.drawable.storm, "33 °C", "20 °C"))
-        forecastList.add(ForecastModel(simpleDateForecast.format(dayTwoList[0].date.toLong()), R.drawable.storm, "${dayTwoList[0].maxTemp} °C", "${dayTwoList[0].minTemp} °C"))
+        forecastList.add(ForecastModel(simpleDateForecast.format(dayTwoList[0].date.toLong()), dayTwoList[0].icon, "${dayTwoList[0].maxTemp} °C", "${dayTwoList[0].minTemp} °C", dayTwoList))
 
-        forecastList.add(ForecastModel(simpleDateForecast.format(dayThreeList[0].date.toLong()), R.drawable.storm, "${dayThreeList[0].maxTemp} °C", "${dayThreeList[0].minTemp} °C"))
+        forecastList.add(ForecastModel(simpleDateForecast.format(dayThreeList[0].date.toLong()), dayThreeList[0].icon, "${dayThreeList[0].maxTemp} °C", "${dayThreeList[0].minTemp} °C", dayThreeList))
 
-        forecastList.add(ForecastModel(simpleDateForecast.format(dayFourList[0].date.toLong()), R.drawable.storm, "${dayFourList[0].maxTemp} °C", "${dayFourList[0].minTemp} °C"))
+        forecastList.add(ForecastModel(simpleDateForecast.format(dayFourList[0].date.toLong()), dayFourList[0].icon, "${dayFourList[0].maxTemp} °C", "${dayFourList[0].minTemp} °C", dayFourList))
 
-        forecastList.add(ForecastModel(simpleDateForecast.format(dayFiveList[0].date.toLong()), R.drawable.storm, "${dayFiveList[0].maxTemp} °C", "${dayFiveList[0].minTemp} °C"))
+        forecastList.add(ForecastModel(simpleDateForecast.format(dayFiveList[0].date.toLong()), dayFiveList[0].icon, "${dayFiveList[0].maxTemp} °C", "${dayFiveList[0].minTemp} °C", dayFiveList))
 
-        forecastList.add(ForecastModel(simpleDateForecast.format(daySixList[0].date.toLong()), R.drawable.storm, "${daySixList[0].maxTemp} °C", "${daySixList[0].minTemp} °C"))
+        forecastList.add(ForecastModel(simpleDateForecast.format(daySixList[0].date.toLong()), daySixList[0].icon, "${daySixList[0].maxTemp} °C", "${daySixList[0].minTemp} °C", daySixList))
 //        logMessage("Main Act: hi", "cal:${calendar.timeInMillis}, data:${dayOneList[0].date},")
 
         recycleView.layoutManager = LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false)

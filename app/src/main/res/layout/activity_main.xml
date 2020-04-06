@@ -5,7 +5,7 @@
     android:background="@drawable/background"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".MainActivity">
+    tools:context=".activity.MainActivity">
 
     <androidx.appcompat.widget.Toolbar
         android:id="@+id/toolbar"
@@ -36,13 +36,12 @@
 
             <ImageView
                 android:id="@+id/iv_current_temp"
-                android:layout_width="96dp"
-                android:layout_height="96dp"
+                android:layout_width="72dp"
+                android:layout_height="72dp"
                 android:layout_marginStart="30dp"
                 android:src="@drawable/clouds"
                 android:scaleType="fitXY"
                 android:contentDescription="@string/weather_image"
-                android:padding="8dp"
                 app:layout_constraintBottom_toTopOf="@id/gl_h_10"
                 app:layout_constraintStart_toStartOf="parent" />
 
@@ -51,20 +50,21 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="30dp"
-                android:layout_marginTop="10dp"
-                android:padding="8dp"
+                android:paddingStart="8dp"
+                android:paddingEnd="8dp"
                 android:text="23°C"
                 android:textColor="@android:color/white"
                 android:textSize="56sp"
                 android:textStyle="bold"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/gl_h_10" />
+                app:layout_constraintTop_toBottomOf="@id/gl_h_10"
+                app:layout_constraintEnd_toStartOf="@id/tv_max_temp"/>
 
             <TextView
                 android:id="@+id/tv_max_temp"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="24dp"
+                android:layout_marginTop="8dp"
                 android:layout_marginEnd="32dp"
                 android:paddingStart="8dp"
                 android:paddingEnd="8dp"
@@ -73,6 +73,7 @@
                 android:textColor="@android:color/white"
                 android:textSize="20sp"
                 android:textStyle="bold"
+                app:layout_constraintStart_toEndOf="@id/tv_current_temp"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/gl_h_10" />
 
@@ -98,6 +99,7 @@
                 android:textSize="20sp"
                 android:textStyle="bold"
                 app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toEndOf="@id/tv_current_temp"
                 app:layout_constraintTop_toBottomOf="@id/view_max_temp" />
 
             <TextView
@@ -109,7 +111,7 @@
                 android:textAlignment="center"
                 android:textColor="@android:color/white"
                 android:textSize="22sp"
-                android:textStyle="bold"
+                android:textStyle="italic"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/tv_min_temp"
